@@ -112,7 +112,7 @@
 								&nbsp;&nbsp;&nbsp;
 							</c:forEach>
 							<c:if test="${board.depth > 0}">
-								<img src="../images/re.gif">
+								<img src="${pageContext.request.contextPath}/images/re.gif">
 							</c:if>
 							<a href="<%=request.getContextPath()%>/Board_Content.do?idx=${board.idx}&cp=${cpage}&ps=${pagesize}">
 								<c:choose>

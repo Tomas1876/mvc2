@@ -20,7 +20,7 @@ if (replylist != null && replylist.size() > 0) {
 			<br> 작성일:<%=reply.getWritedate().toString()%>
 		</td>
 		<td width="20%">
-			<form action="boardreply_deleteOk.jsp" method="POST" name="replyDel">
+			<form action="boardreply_deleteOk.do" method="POST" name="replyDel">
 				<input type="hidden" name="no" value="<%=reply.getNo()%>"> <input
 					type="hidden" name="idx" value="<%=idx%>"> password :<input
 					type="password" name="delPwd" size="4"> <input

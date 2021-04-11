@@ -38,7 +38,7 @@ public class ReplyWriteService implements Action {
 			
 			forward  = new ActionForward();
 			forward.setRedirect(false);
-			forward.setPath("BoardContent.do?idx = "+idx);
+			forward.setPath("Board_Content.do?idx = "+idx);
 			
 		} catch (Exception e) {
 

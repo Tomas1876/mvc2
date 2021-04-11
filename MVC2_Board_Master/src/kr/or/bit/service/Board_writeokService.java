@@ -14,12 +14,12 @@ public class Board_writeokService implements Action{
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		// TODO Auto-generated method stub
 		String subject = request.getParameter("subject");
-		String writer = request.getParameter("subject");
-		String email = request.getParameter("subject");
-		String homepage = request.getParameter("subject");
-		String content = request.getParameter("subject");
-		String pwd = request.getParameter("subject");
-		String filename = request.getParameter("subject");
+		String writer = request.getParameter("writer");
+		String email = request.getParameter("email");
+		String homepage = request.getParameter("homepage");
+		String content = request.getParameter("content");
+		String pwd = request.getParameter("pwd");
+		String filename = request.getParameter("filename");
 		
 		Board dto = new Board();
 		

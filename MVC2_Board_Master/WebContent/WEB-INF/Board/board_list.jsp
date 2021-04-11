@@ -73,7 +73,7 @@
 							>> board_list.jsp?ps=select 태그 값으로 .... 다시 호출 .....
 							>>http://192.168.0.169:8090/WebServlet_5_Board_Model1_Sample/board/board_list.jsp?ps=10					
 						-->
-						<form name="list" >
+						<form name="list" action="Board_List.do" >
 						 PageSize설정: 
 							<select name="ps" onchange="submit()">
 							   <c:forEach var="i" begin="5" end="20" step="5">

@@ -110,22 +110,24 @@ public class BoardFrontController extends HttpServlet {
 				forward = new ActionForward();
 				forward.setRedirect(false);
 				forward.setPath("/WEB-INF/Board/board_rewrite.jsp");
+				
 			} else if (urlcommand.equals("/Board_Rewirteok.do")) { // 게시판 답글 서비스 실행
 				System.out.println("THIS is Board_Rewriteok.do");
 				forward = new ActionForward();
 				action = new Board_rewriteokService();
 				forward = action.execute(request, response);
+				
 			} else if(urlcommand.equals("/Board_Content.do")) {
 				System.out.println("THIS is Board_Content.do");
 				forward = new ActionForward();
 				forward.setRedirect(false);
 				forward.setPath("/WEB-INF/Board/board_content.jsp");
 				
-			}else if(urlcommand.equals("/ReplyList.do")) {
+			}else if(urlcommand.equals("/ReplyList.do")) { // 댓글
 	    		action = new ReplyListService();
 	    		forward = action.execute(request, response);
 	    		
-	    	} else if(urlcommand.equals("/ReplyWrite.do")) {
+	    	} else if(urlcommand.equals("/Board_Replyok.do")) { // 댓글 작성하기
 
 	    		action = new ReplyWriteService();
 	    		forward = action.execute(request, response);

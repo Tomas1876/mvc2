@@ -15,8 +15,8 @@
             <div>
                 <ul>
                 	<!-- a : 페이지 이동을 처리하는 마크업 -->
-                    <li><a href="${pageContext.request.contextPath}/Board_List.do">BOARD LIST</a></li>
-					<li><a href="${pageContext.request.contextPath}/Board_Write.do">BOARD WRITE</a></li>
+                    <li><a href="Board_List.do">BOARD LIST</a></li>
+					<li><a href="Board_Write.do">BOARD WRITE</a></li>
 					<li><a href="#"></a></li>
 					<li><a href="#"></a></li>
                 </ul>
@@ -27,10 +27,6 @@
         	[ TOTAL : 명 ]
         	[ CURRENT : 명 ]
         </div>
-        
-        
-        
-        
         
         
         

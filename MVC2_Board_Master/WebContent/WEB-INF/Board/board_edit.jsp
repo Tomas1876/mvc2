@@ -64,7 +64,7 @@
 	<div id="pageContainer">
 		<div style="padding-top: 25px; text-align: center">
 			<!-- form 시작 -->
-			<form name="edit" action="${pageContext.request.contextPath}/board_editok.do" method="POST">
+			<form name="edit" action="board_editok.do" method="POST">
 				<center>
 					<table width="90%" border="1">
 						<tr>
@@ -125,7 +125,7 @@
 						</tr>
 						<tr>
 							<td colspan="4" align="center">
-								<a href="board_list.jsp">목록</a>
+								<a href="Board_List.do">목록</a>
 							</td>
 						</tr>
 					</table>
@@ -134,4 +134,4 @@
 		</div>
 	</div>
 </body>
-</html>
+</html>s

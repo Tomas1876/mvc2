@@ -25,7 +25,7 @@ public class ReplyListService implements Action {
 			
 			forward = new ActionForward();
 			forward.setRedirect(false);
-			forward.setPath("reply.jsp");
+			forward.setPath("/WEB-INF/Board/reply.jsp");
 			
 		} catch (Exception e) {
 

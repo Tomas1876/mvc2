@@ -8,6 +8,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<script  src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <title>board_content</title>
 <link rel="Stylesheet"
 	href="<%=request.getContextPath()%>/style/default.css" />
@@ -99,12 +100,12 @@
 					</tr>
 					<tr>
 						<td colspan="4" align="center"><a
-							href="board_list.jsp?cp=<%=cpage%>&ps=<%=pagesize%>">목록가기</a> |<a
-							href="${pageContext.request.contextPath}/board_edit.do?idx=<%=idx%>&cp=<%=cpage%>&ps=<%=pagesize%>">편집</a>
+							href="Board_List.do?cp=<%=cpage%>&ps=<%=pagesize%>">목록가기</a> |<a
+							href="board_edit.do?idx=<%=idx%>&cp=<%=cpage%>&ps=<%=pagesize%>">편집</a>
 							|<a
-							href="${pageContext.request.contextPath}/board_delete.do?idx=<%=idx%>&cp=<%=cpage%>&ps=<%=pagesize%>">삭제</a>
+							href="board_delete.do?idx=<%=idx%>&cp=<%=cpage%>&ps=<%=pagesize%>">삭제</a>
 							|<a
-							href="${pageContext.request.contextPath}/Board_Write.do?idx=<%=idx%>&cp=<%=cpage%>&ps=<%=pagesize%>&subject=<%=board.getSubject()%>">답글</a>
+							href="Board_Rewirte.do?idx=<%=idx%>&cp=<%=cpage%>&ps=<%=pagesize%>&subject=<%=board.getSubject()%>">답글</a>
 						</td>
 					</tr>
 				</table>
@@ -136,12 +137,13 @@
 				<script type="text/javascript">
 					function reply_check() {
 						var frm = document.reply;
-						if (frm.reply_writer.value == "" || frm.reply_content.value == ""
-							|| frm.reply_pwd.value == "") {
-									alert("리플 내용, 작성자, 비밀번호를 모두 입력해야합니다.");
+						if (frm.reply_writer.value == ""
+								|| frm.reply_content.value == ""
+								|| frm.reply_pwd.value == "") {
+							alert("리플 내용, 작성자, 비밀번호를 모두 입력해야합니다.");
 							return false;
 						}
-					frm.submit();
+						frm.submit();
 					}
 					function reply_del(frm) {
 						//alert("del");
@@ -156,47 +158,22 @@
 					}
 				</script>
 				<br>
-				<!-- 꼬리글 목록 테이블 -->
-					<%
-		  				//덧글 목록 보여주기
-		  				List<Reply> replylist = service.replyList(idx); //참조하는 글번호
-		  				if(replylist != null && replylist.size() > 0){
-					%>
-						<table width="80%" border="1">
-							<tr>
-								<th colspan="2">REPLY LIST</th>
-							</tr>
-					<%	   
-						for(Reply reply : replylist){
-					%>
-						<tr align="left">
-							<td width="80%">
-								[<%=reply.getWriter()%>] : <%=reply.getContent() %>
-								<br> 작성일:<%=reply.getWritedate().toString()%>
-							</td>
-							<td width="20%">
-							<form action="boardreply_deleteOk.jsp" method="POST" name="replyDel">
-								<input type="hidden" name="no" value="<%=reply.getNo()%>"> 
-								<input type="hidden" name="idx" value="<%=idx%>"> 
-								password :<input type="password" name="delPwd" size="4"> 
-								<input type="button" value="삭제" onclick="reply_del(this.form)">
-							</form>
-						</td>
-					</tr>
-					<%
-					}
-					%>
-				</table>
-				<%
-		  		} 
-				%>
+				<script type="text/javascript">
+					$.ajax({
+						url : "ReplyList.do",
+						data : {
+							idx : <%=idx%>
+						},
+						dataType : "html",
+						success : function(responsedata) {
+							console.log(responsedata);
+							$('center').append(responsedata);
+						}
+					});
+				</script>
+							
 			</center>
 		</div>
 	</div>
 </body>
 </html>
-
-
-
-
-

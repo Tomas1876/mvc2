@@ -14,7 +14,7 @@
 	<link rel="Stylesheet" href="style/default.css">
 </head>
 <body>
-	<%
+	<% 
 		pageContext.include("include/header.jsp");
 	%>
 	<div id="pageContainer">

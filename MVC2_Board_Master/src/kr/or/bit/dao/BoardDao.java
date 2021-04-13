@@ -686,6 +686,11 @@ public class BoardDao {
 	
 		return row;
 	}
+
+	public int replywrite(Reply dto) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
 }
 
 	

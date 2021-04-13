@@ -67,7 +67,7 @@
 				<!--  꼬리글 달기 테이블 -->
 				<form name="reply" method="POST">
 						<!-- hidden 태그  값을 숨겨서 처리  -->
-						<input type="hidden" name="idx" value="${idx}"> 
+						<input type="hidden" name="idx" value="${idx}" id="idx"> 
 						<input type="hidden" name="userid" value=""><!-- 추후 필요에 따라  -->
 						<!-- hidden data -->
 						<table width="80%" border="1">
@@ -97,7 +97,7 @@
 									alert("리플 내용, 작성자, 비밀번호를 모두 입력해야합니다.");
 							return false;
 						}
-					//frm.submit();
+
 					ajadd();
 					
 					}					
@@ -119,6 +119,7 @@
 				
 				<!-- 꼬리글 목록 테이블 댓글영역 시작-->
 				<div id="showreply">
+				 
 				<c:if test="${not empty replyList}">
 					<c:forEach var="reply" items="${replyList}">
 						<table width="80%" border="1" id="comment${reply.no}">
@@ -141,7 +142,7 @@
 							</tr>
 						</table>
 					</c:forEach>
-				</c:if>
+				</c:if>-->
 				<!-- showreply div 즉 댓글 영역 끝 -->
 				</div>
 				
@@ -176,7 +177,7 @@ function ajadd(){
 	
 	$.ajax(
 		{	
-			url : "ReplyOk.do",
+			url : "ReplyOk.ajax",
 			data : adddata,
 			
 			dataType : "html",
@@ -203,22 +204,55 @@ function ajlist(){
 	console.log("불러오기 함수 실행");
 	
 	let replydata = {
-			idx : ${idx},
-	}		
-
-	$.ajax(
-		{
-			url:"ReplyList.do",
-			data:replydata,
-			dataType:"html",
-			success:function(responsedata){
-				console.log(responsedata);
-				$("#showreply").empty();
-				$('#showreply').append(responsedata);
-			}
-		}		
-	);
+			idx : ${idx}
+	}
 	
+	$.ajax(
+			{
+				url:"ReplyList.ajax",
+				data:replydata,
+				dataType:"json",
+				success : function(replydata) {
+					//console.log("여긴 들어오니?");
+					console.log(replydata);
+					
+					$('#showreply').empty();
+					if(replydata.length == 0){
+						$('#showreply').append('<table width="80%"><tr align="left"><td>댓글이 없습니다</td></tr></table>');
+					
+					}else {
+						
+						$.each(replydata, function(index,obj) {
+							$('#showreply').append('<table width="80%" border="1" id="comment'+obj.no+'">'+
+									'<tr >'+
+										'<th colspan="2">REPLY LIST</th>'+
+									'</tr>'+
+									'<tr align="left">'+
+										'<td width="80%">'+
+										'['+ obj.writer +'] : '+ obj.content +
+										'<br> 작성일:'+obj.writedate +
+										'</td>'+
+										'<td width="20%">'+
+										'<form name="replyDel">'+
+											'<input type="hidden" name="no" value="'+ obj.no +'" id="no'+ obj.no +'">'+ 
+											'<input type="hidden" name="idx" value="'+ obj.idx_fk +'" class="'+ obj.idx_fk +'">'+ 
+											'password :<input type="password" name="delPwd" size="4" id="delPwd'+obj.no+'">'+ 
+											'<input type="button" value="삭제" onclick="reply_del(this.form,'+obj.no+','+ obj.idx_fk+')" id="deletebtn'+obj.no+'">'+
+										'</form>'+
+										'</td>'+
+									'</tr>'+
+								'</table>')
+
+						});		
+					}
+				},
+				error : function(xhr){
+					console.log(xhr);
+				}
+				
+			}		
+		);
+
 }
 
 //댓글 비동기 삭제
@@ -242,7 +276,7 @@ function ajdel(getNo, idx){
 
 	$.ajax(
 	 {
-		url:"ReplyDeleteOk.do",
+		url:"ReplyDeleteOk.ajax",
 		data:params,
 		dataType:"text",
 

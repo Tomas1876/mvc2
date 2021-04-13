@@ -41,7 +41,7 @@ public class ReplyWriteService implements Action {
 
 			//이거 지정 안 해도 이미 리스트 서비스에서는 idx번호를 받는다 그렇다고 setPath를 지정하지 않으면 에러 발생
 			//아래 두 경로 중 어느 것으로 지정해도 결과가 동일하게 실행된다
-			forward.setPath("ReplyList.do?idx = "+idx);
+			//forward.setPath("ReplyList.do?idx = "+idx);
 			//forward.setPath("/WEB-INF/views/board/board_content.jsp");
 			
 

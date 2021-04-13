@@ -405,35 +405,35 @@ public class BoardDao {
 	}
 
 	//댓글 입력하기 (Table reply : fk(jspboard idx) )
-		public int replywrite(int idx_fk , String writer , String userid, String content,String pwd) {
-				Connection conn = null;
-				PreparedStatement pstmt = null;
-				int row = 0;
-				try {
-					conn = ds.getConnection();
-					String sql="insert into reply(no,writer,userid,content,pwd,idx_fk) "+
-					           " values(reply_no.nextval,?,?,?,?,?)";
-					pstmt =conn.prepareStatement(sql);
-					pstmt.setString(1, writer);
-					pstmt.setString(2, userid);
-					pstmt.setString(3,content);
-					pstmt.setString(4, pwd);
-					pstmt.setInt(5, idx_fk);
-					
-					row = pstmt.executeUpdate();
-				}catch (Exception e) {
-					e.printStackTrace();
-				}finally {
-					try {
-						pstmt.close();
-						conn.close();//반환
-					}catch (Exception e) {
-						
-					}
-				}
+	public int replywrite(int idx_fk , String writer , String userid, String content,String pwd) {
+			Connection conn = null;
+			PreparedStatement pstmt = null;
+			int row = 0;
+			try {
+				conn = ds.getConnection();
+				String sql="insert into reply(no,writer,userid,content,pwd,idx_fk) "+
+				           " values(reply_no.nextval,?,?,?,?,?)";
+				pstmt =conn.prepareStatement(sql);
+				pstmt.setString(1, writer);
+				pstmt.setString(2, userid);
+				pstmt.setString(3,content);
+				pstmt.setString(4, pwd);
+				pstmt.setInt(5, idx_fk);
 				
-				return row;
+				row = pstmt.executeUpdate();
+			}catch (Exception e) {
+				e.printStackTrace();
+			}finally {
+				try {
+					pstmt.close();
+					conn.close();//반환
+				}catch (Exception e) {
+					
+				}
 			}
+			
+			return row;
+		}
 		
 	//댓글 조회하기
 	public List<Reply> replylist(String idx_fk){
@@ -648,7 +648,7 @@ public class BoardDao {
 		
 		try {
 			conn = ds.getConnection();
-			String sql_idx = "select idx  from jspboard where idx=? and pwd=?"; //작성자 본인인지 확인
+			String sql_idx = "select idx  from jspboard where idx=? and pwd=?";
 			String sql_udpate = "update jspboard set writer=? , email=? , homepage=? ,"+
 			                    " subject=? , content=? , filename=? where idx=?";
 			pstmt = conn.prepareStatement(sql_idx);
@@ -686,7 +686,6 @@ public class BoardDao {
 	
 		return row;
 	}
-
 }
 
 	

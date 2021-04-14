@@ -1,4 +1,4 @@
-package kr.or.bit.ajax;
+package kr.or.bit.ajaxService;
 
 import java.util.List;
 

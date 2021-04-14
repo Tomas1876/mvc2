@@ -1,4 +1,4 @@
-package kr.or.bit.ajax;
+package kr.or.bit.ajaxService;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -46,7 +46,7 @@ public class ReplyDeleteOk implements Action {
 			}
 
 
-		request.setAttribute("board_msg", msg);
+		//request.setAttribute("board_msg", msg);
 		
 		ActionForward forward = new ActionForward();
 		forward.setRedirect(false);

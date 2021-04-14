@@ -1,30 +1,42 @@
 package kr.or.bit.ajax;
 
-import java.io.PrintWriter;
+import java.io.IOException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.List;
 
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import kr.or.bit.action.Action;
-import kr.or.bit.action.ActionForward;
+
 import kr.or.bit.dao.BoardDao;
 import kr.or.bit.dto.Reply;
+
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 
-public class ReplyListService implements Action {
+@WebServlet("/ReplyList")
+public class ReplyList extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+       
+    public ReplyList() {
+        super();
 
-	@Override
-	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) {
-		
-		String idx= request.getParameter("idx");
+    }
+
+    protected void doProcess(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    	String requestURI = request.getRequestURI();
+    	String contextPath = request.getContextPath();
+    	String url_Command = requestURI.substring(contextPath.length());
+    	System.out.println("url_Command : " + url_Command);
+
+    	String idx= request.getParameter("idx");
 		DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 		
-		ActionForward forward = null;
-    	
+ 	
 		try {
 			
 			BoardDao dao = new BoardDao();
@@ -62,10 +74,16 @@ public class ReplyListService implements Action {
 		} finally {
 
 		}
-		forward  = new ActionForward();
-		forward.setRedirect(false);
-		
-		return forward;
-	}
-}
 
+    }
+    
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		doProcess(request, response);
+	}
+
+
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		doProcess(request, response);
+	}
+
+}

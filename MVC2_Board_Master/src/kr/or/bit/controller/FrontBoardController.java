@@ -11,9 +11,9 @@ import javax.servlet.http.HttpServletResponse;
 
 import kr.or.bit.action.Action;
 import kr.or.bit.action.ActionForward;
-import kr.or.bit.ajax.ReplyDeleteOk;
-import kr.or.bit.ajax.ReplyListService;
-import kr.or.bit.ajax.ReplyWriteService;
+import kr.or.bit.ajaxService.ReplyDeleteOk;
+import kr.or.bit.ajaxService.ReplyListService;
+import kr.or.bit.ajaxService.ReplyWriteService;
 import kr.or.bit.service.BoardAddService;
 import kr.or.bit.service.BoardContentService;
 import kr.or.bit.service.BoardDeleteOk;
